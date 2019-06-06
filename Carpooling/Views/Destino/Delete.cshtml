@@ -1,0 +1,68 @@
+﻿@model Carpooling.Models.DESTINO
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>DESTINO</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ENDERECO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ENDERECO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.COMPLEMENTO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.COMPLEMENTO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CEP)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CEP)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BAIRRO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BAIRRO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CIDADE)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CIDADE)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UF)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UF)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TELEFONE)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TELEFONE)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

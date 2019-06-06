@@ -1,0 +1,64 @@
+﻿@model Carpooling.Models.DESTINO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>DESTINO</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ENDERECO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ENDERECO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.COMPLEMENTO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.COMPLEMENTO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CEP)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CEP)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.BAIRRO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BAIRRO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CIDADE)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CIDADE)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UF)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UF)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TELEFONE)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TELEFONE)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
