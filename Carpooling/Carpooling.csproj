@@ -184,6 +184,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AgendaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -366,6 +367,16 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Default1\Index.cshtml" />
+    <Content Include="Views\Default1\Details.cshtml" />
+    <Content Include="Views\Default1\Create.cshtml" />
+    <Content Include="Views\Default1\Edit.cshtml" />
+    <Content Include="Views\Default1\Delete.cshtml" />
+    <Content Include="Views\Agenda\Index.cshtml" />
+    <Content Include="Views\Agenda\Details.cshtml" />
+    <Content Include="Views\Agenda\Create.cshtml" />
+    <Content Include="Views\Agenda\Edit.cshtml" />
+    <Content Include="Views\Agenda\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
