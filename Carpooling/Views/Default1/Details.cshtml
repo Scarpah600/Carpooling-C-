@@ -1,0 +1,43 @@
+﻿@model Carpooling.Models.AGENDA
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>AGENDA</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DATAHORA)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DATAHORA)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.VEICULO.MODELO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.VEICULO.MODELO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DESTINO.ENDERECO)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DESTINO.ENDERECO)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.USUARIOS.NOME)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.USUARIOS.NOME)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="carpoolingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AGENDA">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="DATAHORA" Type="datetime" />
+    <Property Name="CARRO_CARROID" Type="int" Nullable="false" />
+    <Property Name="DESTINOFINAL_DESTINOID" Type="int" Nullable="false" />
+    <Property Name="USUARIOPROPRIETARIO_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AGENDA_USUARIOS">
+    <Key>
+      <PropertyRef Name="USUARIO_ID" />
+      <PropertyRef Name="AGENDA_ID" />
+    </Key>
+    <Property Name="USUARIO_ID" Type="int" Nullable="false" />
+    <Property Name="AGENDA_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DESTINO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="ENDERECO" Type="varchar" MaxLength="50" />
+    <Property Name="COMPLEMENTO" Type="varchar" MaxLength="50" />
+    <Property Name="CEP" Type="varchar" MaxLength="50" />
+    <Property Name="BAIRRO" Type="varchar" MaxLength="50" />
+    <Property Name="CIDADE" Type="varchar" MaxLength="50" />
+    <Property Name="UF" Type="varchar" MaxLength="50" />
+    <Property Name="TELEFONE" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="USUARIOS">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="NOME" Type="varchar" MaxLength="50" />
+    <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+    <Property Name="RG" Type="varchar" MaxLength="50" />
+    <Property Name="ENDERECO" Type="varchar" MaxLength="50" />
+    <Property Name="COMPLEMENTO" Type="varchar" MaxLength="50" />
+    <Property Name="CEP" Type="varchar" MaxLength="50" />
+    <Property Name="BAIRRO" Type="varchar" MaxLength="50" />
+    <Property Name="CIDADE" Type="varchar" MaxLength="50" />
+    <Property Name="UF" Type="varchar" MaxLength="50" />
+    <Property Name="TELEFONE" Type="varchar" MaxLength="50" />
+    <Property Name="CELULAR" Type="varchar" MaxLength="50" />
+    <Property Name="USUARIOSISTEMA" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="VEICULO">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="MODELO" Type="varchar" MaxLength="50" />
+    <Property Name="PLACA" Type="varchar" MaxLength="50" />
+    <Property Name="COR" Type="varchar" MaxLength="50" />
+    <Property Name="CAPACIDADE" Type="int" Nullable="false" />
+    <Property Name="USUARIO_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_DESTINO_ID">
+    <End Role="DESTINO" Type="Self.DESTINO" Multiplicity="1" />
+    <End Role="AGENDA" Type="Self.AGENDA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DESTINO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AGENDA">
+        <PropertyRef Name="DESTINOFINAL_DESTINOID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PERFIL">
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+    <End Role="VEICULO" Type="Self.VEICULO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VEICULO">
+        <PropertyRef Name="USUARIO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USUARIO_ID">
+    <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+    <End Role="AGENDA" Type="Self.AGENDA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIOS">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AGENDA">
+        <PropertyRef Name="USUARIOPROPRIETARIO_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VEICULO_ID">
+    <End Role="VEICULO" Type="Self.VEICULO" Multiplicity="1" />
+    <End Role="AGENDA" Type="Self.AGENDA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VEICULO">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AGENDA">
+        <PropertyRef Name="CARRO_CARROID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="carpoolingModelStoreContainer">
+    <EntitySet Name="AGENDA" EntityType="Self.AGENDA" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AGENDA_USUARIOS" EntityType="Self.AGENDA_USUARIOS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DESTINO" EntityType="Self.DESTINO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VEICULO" EntityType="Self.VEICULO" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_DESTINO_ID" Association="Self.FK_DESTINO_ID">
+      <End Role="DESTINO" EntitySet="DESTINO" />
+      <End Role="AGENDA" EntitySet="AGENDA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PERFIL" Association="Self.FK_PERFIL">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="VEICULO" EntitySet="VEICULO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USUARIO_ID" Association="Self.FK_USUARIO_ID">
+      <End Role="USUARIOS" EntitySet="USUARIOS" />
+      <End Role="AGENDA" EntitySet="AGENDA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VEICULO_ID" Association="Self.FK_VEICULO_ID">
+      <End Role="VEICULO" EntitySet="VEICULO" />
+      <End Role="AGENDA" EntitySet="AGENDA" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

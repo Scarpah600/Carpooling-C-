@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a5c76fd9e69f4f87b6c2bf301aaa0768" Name="Diagram1">
+        <EntityTypeShape EntityType="carpoolingModel.AGENDA" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="carpoolingModel.AGENDA_USUARIOS" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="carpoolingModel.DESTINO" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="carpoolingModel.USUARIOS" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="carpoolingModel.VEICULO" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="carpoolingModel.FK_DESTINO_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="carpoolingModel.FK_USUARIO_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="carpoolingModel.FK_VEICULO_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="carpoolingModel.FK_PERFIL" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

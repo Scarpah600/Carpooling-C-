@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="carpoolingModelStoreContainer" CdmEntityContainer="carpoolingEntities">
+    <EntitySetMapping Name="AGENDA">
+      <EntityTypeMapping TypeName="carpoolingModel.AGENDA">
+        <MappingFragment StoreEntitySet="AGENDA">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="DATAHORA" ColumnName="DATAHORA" />
+          <ScalarProperty Name="CARRO_CARROID" ColumnName="CARRO_CARROID" />
+          <ScalarProperty Name="DESTINOFINAL_DESTINOID" ColumnName="DESTINOFINAL_DESTINOID" />
+          <ScalarProperty Name="USUARIOPROPRIETARIO_ID" ColumnName="USUARIOPROPRIETARIO_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AGENDA_USUARIOS">
+      <EntityTypeMapping TypeName="carpoolingModel.AGENDA_USUARIOS">
+        <MappingFragment StoreEntitySet="AGENDA_USUARIOS">
+          <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
+          <ScalarProperty Name="AGENDA_ID" ColumnName="AGENDA_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DESTINO">
+      <EntityTypeMapping TypeName="carpoolingModel.DESTINO">
+        <MappingFragment StoreEntitySet="DESTINO">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ENDERECO" ColumnName="ENDERECO" />
+          <ScalarProperty Name="COMPLEMENTO" ColumnName="COMPLEMENTO" />
+          <ScalarProperty Name="CEP" ColumnName="CEP" />
+          <ScalarProperty Name="BAIRRO" ColumnName="BAIRRO" />
+          <ScalarProperty Name="CIDADE" ColumnName="CIDADE" />
+          <ScalarProperty Name="UF" ColumnName="UF" />
+          <ScalarProperty Name="TELEFONE" ColumnName="TELEFONE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USUARIOS">
+      <EntityTypeMapping TypeName="carpoolingModel.USUARIOS">
+        <MappingFragment StoreEntitySet="USUARIOS">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NOME" ColumnName="NOME" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="RG" ColumnName="RG" />
+          <ScalarProperty Name="ENDERECO" ColumnName="ENDERECO" />
+          <ScalarProperty Name="COMPLEMENTO" ColumnName="COMPLEMENTO" />
+          <ScalarProperty Name="CEP" ColumnName="CEP" />
+          <ScalarProperty Name="BAIRRO" ColumnName="BAIRRO" />
+          <ScalarProperty Name="CIDADE" ColumnName="CIDADE" />
+          <ScalarProperty Name="UF" ColumnName="UF" />
+          <ScalarProperty Name="TELEFONE" ColumnName="TELEFONE" />
+          <ScalarProperty Name="CELULAR" ColumnName="CELULAR" />
+          <ScalarProperty Name="USUARIOSISTEMA" ColumnName="USUARIOSISTEMA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VEICULO">
+      <EntityTypeMapping TypeName="carpoolingModel.VEICULO">
+        <MappingFragment StoreEntitySet="VEICULO">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="MODELO" ColumnName="MODELO" />
+          <ScalarProperty Name="PLACA" ColumnName="PLACA" />
+          <ScalarProperty Name="COR" ColumnName="COR" />
+          <ScalarProperty Name="CAPACIDADE" ColumnName="CAPACIDADE" />
+          <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

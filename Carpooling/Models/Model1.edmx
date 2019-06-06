@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="carpoolingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AGENDA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="DATAHORA" Type="datetime" />
+          <Property Name="CARRO_CARROID" Type="int" Nullable="false" />
+          <Property Name="DESTINOFINAL_DESTINOID" Type="int" Nullable="false" />
+          <Property Name="USUARIOPROPRIETARIO_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AGENDA_USUARIOS">
+          <Key>
+            <PropertyRef Name="USUARIO_ID" />
+            <PropertyRef Name="AGENDA_ID" />
+          </Key>
+          <Property Name="USUARIO_ID" Type="int" Nullable="false" />
+          <Property Name="AGENDA_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DESTINO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ENDERECO" Type="varchar" MaxLength="50" />
+          <Property Name="COMPLEMENTO" Type="varchar" MaxLength="50" />
+          <Property Name="CEP" Type="varchar" MaxLength="50" />
+          <Property Name="BAIRRO" Type="varchar" MaxLength="50" />
+          <Property Name="CIDADE" Type="varchar" MaxLength="50" />
+          <Property Name="UF" Type="varchar" MaxLength="50" />
+          <Property Name="TELEFONE" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NOME" Type="varchar" MaxLength="50" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="50" />
+          <Property Name="RG" Type="varchar" MaxLength="50" />
+          <Property Name="ENDERECO" Type="varchar" MaxLength="50" />
+          <Property Name="COMPLEMENTO" Type="varchar" MaxLength="50" />
+          <Property Name="CEP" Type="varchar" MaxLength="50" />
+          <Property Name="BAIRRO" Type="varchar" MaxLength="50" />
+          <Property Name="CIDADE" Type="varchar" MaxLength="50" />
+          <Property Name="UF" Type="varchar" MaxLength="50" />
+          <Property Name="TELEFONE" Type="varchar" MaxLength="50" />
+          <Property Name="CELULAR" Type="varchar" MaxLength="50" />
+          <Property Name="USUARIOSISTEMA" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="VEICULO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="MODELO" Type="varchar" MaxLength="50" />
+          <Property Name="PLACA" Type="varchar" MaxLength="50" />
+          <Property Name="COR" Type="varchar" MaxLength="50" />
+          <Property Name="CAPACIDADE" Type="int" Nullable="false" />
+          <Property Name="USUARIO_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DESTINO_ID">
+          <End Role="DESTINO" Type="Self.DESTINO" Multiplicity="1" />
+          <End Role="AGENDA" Type="Self.AGENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DESTINO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AGENDA">
+              <PropertyRef Name="DESTINOFINAL_DESTINOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERFIL">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="VEICULO" Type="Self.VEICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VEICULO">
+              <PropertyRef Name="USUARIO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIO_ID">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="AGENDA" Type="Self.AGENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AGENDA">
+              <PropertyRef Name="USUARIOPROPRIETARIO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VEICULO_ID">
+          <End Role="VEICULO" Type="Self.VEICULO" Multiplicity="1" />
+          <End Role="AGENDA" Type="Self.AGENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VEICULO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AGENDA">
+              <PropertyRef Name="CARRO_CARROID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="carpoolingModelStoreContainer">
+          <EntitySet Name="AGENDA" EntityType="Self.AGENDA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AGENDA_USUARIOS" EntityType="Self.AGENDA_USUARIOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DESTINO" EntityType="Self.DESTINO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VEICULO" EntityType="Self.VEICULO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DESTINO_ID" Association="Self.FK_DESTINO_ID">
+            <End Role="DESTINO" EntitySet="DESTINO" />
+            <End Role="AGENDA" EntitySet="AGENDA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERFIL" Association="Self.FK_PERFIL">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="VEICULO" EntitySet="VEICULO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIO_ID" Association="Self.FK_USUARIO_ID">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="AGENDA" EntitySet="AGENDA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VEICULO_ID" Association="Self.FK_VEICULO_ID">
+            <End Role="VEICULO" EntitySet="VEICULO" />
+            <End Role="AGENDA" EntitySet="AGENDA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="carpoolingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AGENDA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="DATAHORA" Type="DateTime" Precision="3" />
+          <Property Name="CARRO_CARROID" Type="Int32" Nullable="false" />
+          <Property Name="DESTINOFINAL_DESTINOID" Type="Int32" Nullable="false" />
+          <Property Name="USUARIOPROPRIETARIO_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DESTINO" Relationship="Self.FK_DESTINO_ID" FromRole="AGENDA" ToRole="DESTINO" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.FK_USUARIO_ID" FromRole="AGENDA" ToRole="USUARIOS" />
+          <NavigationProperty Name="VEICULO" Relationship="Self.FK_VEICULO_ID" FromRole="AGENDA" ToRole="VEICULO" />
+        </EntityType>
+        <EntityType Name="AGENDA_USUARIOS">
+          <Key>
+            <PropertyRef Name="USUARIO_ID" />
+            <PropertyRef Name="AGENDA_ID" />
+          </Key>
+          <Property Name="USUARIO_ID" Type="Int32" Nullable="false" />
+          <Property Name="AGENDA_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DESTINO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ENDERECO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COMPLEMENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CEP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BAIRRO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CIDADE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UF" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AGENDA" Relationship="Self.FK_DESTINO_ID" FromRole="DESTINO" ToRole="AGENDA" />
+        </EntityType>
+        <EntityType Name="USUARIOS">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NOME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ENDERECO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COMPLEMENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CEP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BAIRRO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CIDADE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UF" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TELEFONE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CELULAR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USUARIOSISTEMA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AGENDA" Relationship="Self.FK_USUARIO_ID" FromRole="USUARIOS" ToRole="AGENDA" />
+          <NavigationProperty Name="VEICULO" Relationship="Self.FK_PERFIL" FromRole="USUARIOS" ToRole="VEICULO" />
+        </EntityType>
+        <EntityType Name="VEICULO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="MODELO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PLACA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="COR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CAPACIDADE" Type="Int32" Nullable="false" />
+          <Property Name="USUARIO_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AGENDA" Relationship="Self.FK_VEICULO_ID" FromRole="VEICULO" ToRole="AGENDA" />
+          <NavigationProperty Name="USUARIOS" Relationship="Self.FK_PERFIL" FromRole="VEICULO" ToRole="USUARIOS" />
+        </EntityType>
+        <Association Name="FK_DESTINO_ID">
+          <End Role="DESTINO" Type="Self.DESTINO" Multiplicity="1" />
+          <End Role="AGENDA" Type="Self.AGENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DESTINO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AGENDA">
+              <PropertyRef Name="DESTINOFINAL_DESTINOID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USUARIO_ID">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="AGENDA" Type="Self.AGENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AGENDA">
+              <PropertyRef Name="USUARIOPROPRIETARIO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VEICULO_ID">
+          <End Role="VEICULO" Type="Self.VEICULO" Multiplicity="1" />
+          <End Role="AGENDA" Type="Self.AGENDA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VEICULO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AGENDA">
+              <PropertyRef Name="CARRO_CARROID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERFIL">
+          <End Role="USUARIOS" Type="Self.USUARIOS" Multiplicity="1" />
+          <End Role="VEICULO" Type="Self.VEICULO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USUARIOS">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="VEICULO">
+              <PropertyRef Name="USUARIO_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="carpoolingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AGENDA" EntityType="Self.AGENDA" />
+          <EntitySet Name="AGENDA_USUARIOS" EntityType="Self.AGENDA_USUARIOS" />
+          <EntitySet Name="DESTINO" EntityType="Self.DESTINO" />
+          <EntitySet Name="USUARIOS" EntityType="Self.USUARIOS" />
+          <EntitySet Name="VEICULO" EntityType="Self.VEICULO" />
+          <AssociationSet Name="FK_DESTINO_ID" Association="Self.FK_DESTINO_ID">
+            <End Role="DESTINO" EntitySet="DESTINO" />
+            <End Role="AGENDA" EntitySet="AGENDA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USUARIO_ID" Association="Self.FK_USUARIO_ID">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="AGENDA" EntitySet="AGENDA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VEICULO_ID" Association="Self.FK_VEICULO_ID">
+            <End Role="VEICULO" EntitySet="VEICULO" />
+            <End Role="AGENDA" EntitySet="AGENDA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERFIL" Association="Self.FK_PERFIL">
+            <End Role="USUARIOS" EntitySet="USUARIOS" />
+            <End Role="VEICULO" EntitySet="VEICULO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="carpoolingModelStoreContainer" CdmEntityContainer="carpoolingEntities">
+          <EntitySetMapping Name="AGENDA">
+            <EntityTypeMapping TypeName="carpoolingModel.AGENDA">
+              <MappingFragment StoreEntitySet="AGENDA">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DATAHORA" ColumnName="DATAHORA" />
+                <ScalarProperty Name="CARRO_CARROID" ColumnName="CARRO_CARROID" />
+                <ScalarProperty Name="DESTINOFINAL_DESTINOID" ColumnName="DESTINOFINAL_DESTINOID" />
+                <ScalarProperty Name="USUARIOPROPRIETARIO_ID" ColumnName="USUARIOPROPRIETARIO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AGENDA_USUARIOS">
+            <EntityTypeMapping TypeName="carpoolingModel.AGENDA_USUARIOS">
+              <MappingFragment StoreEntitySet="AGENDA_USUARIOS">
+                <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
+                <ScalarProperty Name="AGENDA_ID" ColumnName="AGENDA_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DESTINO">
+            <EntityTypeMapping TypeName="carpoolingModel.DESTINO">
+              <MappingFragment StoreEntitySet="DESTINO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ENDERECO" ColumnName="ENDERECO" />
+                <ScalarProperty Name="COMPLEMENTO" ColumnName="COMPLEMENTO" />
+                <ScalarProperty Name="CEP" ColumnName="CEP" />
+                <ScalarProperty Name="BAIRRO" ColumnName="BAIRRO" />
+                <ScalarProperty Name="CIDADE" ColumnName="CIDADE" />
+                <ScalarProperty Name="UF" ColumnName="UF" />
+                <ScalarProperty Name="TELEFONE" ColumnName="TELEFONE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USUARIOS">
+            <EntityTypeMapping TypeName="carpoolingModel.USUARIOS">
+              <MappingFragment StoreEntitySet="USUARIOS">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="RG" ColumnName="RG" />
+                <ScalarProperty Name="ENDERECO" ColumnName="ENDERECO" />
+                <ScalarProperty Name="COMPLEMENTO" ColumnName="COMPLEMENTO" />
+                <ScalarProperty Name="CEP" ColumnName="CEP" />
+                <ScalarProperty Name="BAIRRO" ColumnName="BAIRRO" />
+                <ScalarProperty Name="CIDADE" ColumnName="CIDADE" />
+                <ScalarProperty Name="UF" ColumnName="UF" />
+                <ScalarProperty Name="TELEFONE" ColumnName="TELEFONE" />
+                <ScalarProperty Name="CELULAR" ColumnName="CELULAR" />
+                <ScalarProperty Name="USUARIOSISTEMA" ColumnName="USUARIOSISTEMA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VEICULO">
+            <EntityTypeMapping TypeName="carpoolingModel.VEICULO">
+              <MappingFragment StoreEntitySet="VEICULO">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MODELO" ColumnName="MODELO" />
+                <ScalarProperty Name="PLACA" ColumnName="PLACA" />
+                <ScalarProperty Name="COR" ColumnName="COR" />
+                <ScalarProperty Name="CAPACIDADE" ColumnName="CAPACIDADE" />
+                <ScalarProperty Name="USUARIO_ID" ColumnName="USUARIO_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
